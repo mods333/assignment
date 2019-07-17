@@ -31,7 +31,7 @@ class Kmeans():
             if dist < self.tol:
                 print("convergef before max iterations at:{}".format(j))
                 break
-        return data_cluster
+        return data_cluster, cluster_centers
 
 
 
@@ -60,9 +60,10 @@ if __name__=='__main__':
     plt.show()
 
     model = Kmeans(num_clusters=args.k, max_iterations=args.max_iter)
-    out = model.fit(data)
+    out, cluster_centers = model.fit(data)
 
     plt.scatter(data[:,0], data[:,1], c = out, alpha=0.5)
+    plt.scatter(cluster_centers[:,0], cluster_centers[:,1])
     plt.title('Learned clusters')
     plt.xlabel('x')
     plt.ylabel('y')
